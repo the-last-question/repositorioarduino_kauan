@@ -1,0 +1,29 @@
+// arduino 2
+
+#include <LiquidCrystal.h>
+
+//inicializa a biblioteca com os números dos pinos da interface
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+int val;
+
+void setup() {
+  //configurando o número de colunas e linhas do LCD:
+  lcd.begin(16, 2);
+  // Imprime a menssagem no LCD.
+  lcd.print("E o Dantass!!!");
+  delay(100);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // definindo o cursor para a coluna 0, linha 1
+  // a linha 1 é a segunda linha, pois a contagem começa com 0
+  lcd.setCursor(0, 0);
+  lcd.clear();
+  if(Serial.available() > 0){
+  	val = Serial.read();
+  	lcd.print(val);
+    delay(100);
+  }
+}
+ 
