@@ -1,0 +1,34 @@
+// arduino 1
+
+/*
+https://howtomechatronics.com/tutorials/arduino/ultrasonic-sensor-hc-sr04/
+  Ultrasonic Sensor HC-SR04 e Arduino Tutorial
+*/
+// definindo os pinos e seus numeros
+const int trigPin = 10;
+const int echoPin = 9;
+// definindo variaveis
+long duration;
+float distance;
+
+void setup() {
+  pinMode(trigPin, OUTPUT); 
+  pinMode(echoPin, INPUT); 
+  Serial.begin(9600); // Comunicação serial
+}
+void loop() {
+  // Limpar o trigPin
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  // Define o trigPin no estado alto por 10 microssegundos
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  // Lê o echoPin e retorna o tempo de viagem da onda sonora em microssegundos
+  duration = pulseIn(echoPin, HIGH);
+  // Calcula a distancia
+  distance = duration * 0.034 / 2;
+  // Imprime a distância no Monitor Serial, envia o valor convertindo em string
+  Serial.println(distance, 2);
+
+}
