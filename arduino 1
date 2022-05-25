@@ -13,7 +13,7 @@ const int trigPin = 10;
 const int echoPin = 9;
 // definindo variaveis
 long duracao;
-int distance;
+float distance;
 
 // Definindo os leds;
 int ledV = 7;
@@ -75,7 +75,8 @@ void loop() {
   }
 
  Serial.write("A distancia: ");
+    Serial.print(String(distance,2));
+  Serial.print('\n');
  delay(2000);
- Serial.write(distance);
-//
+ 
 }
