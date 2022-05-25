@@ -5,5 +5,5 @@ O presente repositório tem o intuito de armazenar a construção de um artigo L
 Acesse o [desafio 2] (https://www.tinkercad.com/things/67HGXvmCnA2-trabalho-de-marco/editel?sharecode=oUzTECPg-qzr-18cShHNS7sz7xav2gU39bE1C2RPyXw).
 
 <div align="center">
-img src=(https://user-images.githubusercontent.com/100162696/170180595-ef91b89c-8164-4d76-9b48-6ac1c75f26c8.png)
+<img src=(https://user-images.githubusercontent.com/100162696/170180595-ef91b89c-8164-4d76-9b48-6ac1c75f26c8.png)
 </div>
