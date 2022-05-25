@@ -1,0 +1,81 @@
+// arduino 1
+
+/*
+https://howtomechatronics.com/tutorials/arduino/ultrasonic-sensor-hc-sr04/
+  Ultrasonic Sensor HC-SR04 e Arduino Tutorial
+*/
+// definindo os pinos e seus numeros
+
+#include  <SoftwareSerial.h>
+//#include <String.h>
+
+const int trigPin = 10;
+const int echoPin = 9;
+// definindo variaveis
+long duracao;
+int distance;
+
+// Definindo os leds;
+int ledV = 7;
+int ledA = 6;
+int ledB = 5;
+
+void setup() {
+  pinMode (ledV, OUTPUT);
+  pinMode (ledA, OUTPUT);
+  pinMode (ledB, OUTPUT);
+  pinMode(trigPin, OUTPUT); 
+  pinMode(echoPin, INPUT); 
+  Serial.begin(9600); // Comunicação serial
+}
+void loop() {
+  // Limpar o trigPin
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(10);
+  // Define o trigPin no estado alto por 10 microssegundos
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  // Lê o echoPin e retorna o tempo de viagem da onda sonora em microssegundos
+  duracao = pulseIn(echoPin, HIGH);
+  // Calcula a distancia
+  distance = duracao * 0.035 / 2;
+  // Imprime a distância no Monitor Serial, envia o valor convertindo em string
+  // Serial.println(distance, 2);
+	
+  
+  // Condições para os leds ligarem
+  if(distance <= 112 && distance >= 0){
+  // Led Vermlho liga com valores abaixo de 113 e acoma de 0
+    
+     digitalWrite(ledV, HIGH);
+     digitalWrite(ledA, LOW);
+     digitalWrite(ledB, LOW);
+  }
+    if(distance <= 223 && distance >= 112){
+      // Led azul liga com valores acima de 112 e abaixo de 224
+    
+     digitalWrite(ledV, LOW);
+     digitalWrite(ledA, HIGH);
+     digitalWrite(ledB, LOW);
+    }
+  if(distance >= 223 && distance <= 355){
+    // Led branco liga com valores acima de 223 e abaixo de 335
+    
+     digitalWrite(ledV, LOW);
+     digitalWrite(ledA, LOW);
+     digitalWrite(ledB, HIGH);
+  }
+   if(distance < 0 && distance > 355){
+     // Desliga todos os leds se a distancia estiver fora de 0 e 335
+     
+     digitalWrite(ledV, LOW);
+     digitalWrite(ledA, LOW);
+     digitalWrite(ledB, LOW);
+  }
+
+ Serial.write("A distancia: ");
+ delay(2000);
+ Serial.write(distance);
+
+}
