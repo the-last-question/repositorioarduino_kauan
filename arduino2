@@ -23,11 +23,12 @@ void loop() {
   // definindo o cursor para a coluna 0, linha 1
   // a linha 1 é a segunda linha, pois a contagem começa com 0
   lcd.setCursor(0, 0);
-  if(Serial.available() > 0){
-    dist = Serial.read();
-    // Serial.flush();
+  if(Serial.available() > 2){
+    Serial.flush();
     lcd.clear();
-    lcd.print(dist);
-    delay(2000);
+    dist = Serial.readStringUntil('\n');
   }
+  Serial.println(dist);
+  lcd.print(dist);
+    delay(2000);
 }
