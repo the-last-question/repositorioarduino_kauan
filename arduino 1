@@ -1,9 +1,5 @@
 // arduino 1
 
-/*
-https://howtomechatronics.com/tutorials/arduino/ultrasonic-sensor-hc-sr04/
-  Ultrasonic Sensor HC-SR04 e Arduino Tutorial
-*/
 // definindo os pinos e seus numeros
 
 #include  <SoftwareSerial.h>
@@ -39,7 +35,7 @@ void loop() {
   // Lê o echoPin e retorna o tempo de viagem da onda sonora em microssegundos
   duracao = pulseIn(echoPin, HIGH);
   // Calcula a distancia
-  distance = duracao * 0.035 / 2;
+  distance = duracao * 0.03455555555555/ 2;
   // Imprime a distância no Monitor Serial, envia o valor convertindo em string
   // Serial.println(distance, 2);
 	
@@ -66,7 +62,7 @@ void loop() {
      digitalWrite(ledA, LOW);
      digitalWrite(ledB, HIGH);
   }
-   if(distance < 0 && distance > 355){
+   if(distance < 2 && distance > 355){
      // Desliga todos os leds se a distancia estiver fora de 0 e 335
      
      digitalWrite(ledV, LOW);
@@ -75,7 +71,7 @@ void loop() {
   }
 
  Serial.write("A distancia: ");
-    Serial.print(String(distance,2));
+    Serial.print(String(distance,0));
   Serial.print('\n');
  delay(2000);
  
